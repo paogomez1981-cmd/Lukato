@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lukato</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; background: #f8fafc; }
+        header { background: #059669; color: white; padding: 2rem; text-align: center; }
+        main { max-width: 600px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { margin: 0; }
+        button { background: #059669; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 1rem;}
+        button:hover { opacity: 0.9; }
+        .dynamic-box { padding: 1rem; background: #ecfdf5; border-left: 4px solid #059669; margin-top: 1rem; display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Lukato</h1>
+    </header>
+
+    <main>
+        <p>Lukato | Pâtisserie créative sur mesure.
+Gâteaux personnalisés • Biscuits décorés • Créations artisanale</p>
+        
+        <button onclick="mostrarMensaje()">¡Haz clic para ver la magia!</button>
+        
+        <div id="cajaSecreta" class="dynamic-box">
+            ¡Hola! Este mensaje apareció dinámicamente gracias a JavaScript.
+            <br>Fecha actual: <span id="fecha"></span>
+        </div>
+    </main>
+
+    <script>
+        function mostrarMensaje() {
+            const caja = document.getElementById('cajaSecreta');
+            caja.style.display = 'block';
+            document.getElementById('fecha').innerText = new Date().toLocaleTimeString();
+        }
+    </script>
+
+</body>
+</html>
+
+content_copy
