@@ -1,71 +1,189 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lukato</title>
-    <!-- Estilos (Tailwind CSS) -->
+    <title>Lukato | Pâtisserie Créative & Festive</title>
+    
+    <!-- Tailwind CSS (Estilos) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuentes Elegantes -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <!-- Iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Configuración de Colores -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lukato-pink': '#FF69B4', 
+                        'lukato-light': '#FFF0F5',
+                        'lukato-dark': '#2D2D2D',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
-        body { font-family: 'Playfair Display', serif; }
-        
-        .hero-img { 
-            background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80'); 
-            background-size: cover; 
-            background-position: center;
-        }
+        .hero-zoom:hover .hero-img { transform: scale(1.05); }
+        .hero-img { transition: transform 0.7s ease; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="font-serif bg-slate-900 text-slate-100 min-h-screen flex flex-col max-w-md mx-auto shadow-2xl bg-white">
+<body class="font-sans text-lukato-dark antialiased bg-white selection:bg-lukato-pink selection:text-white">
 
-    <!-- Hero Section -->
-    <div class="h-64 w-full hero-img relative group">
-        <div class="absolute inset-0 bg-black/40 transition group-hover:bg-black/20"></div>
-        <div class="absolute bottom-0 left-0 p-6">
-            <h1 class="text-4xl font-bold text-white drop-shadow-lg mb-1">Lukato</h1>
-            <p class="text-white/90 text-sm font-medium backdrop-blur-sm bg-white/20 inline-block px-2 rounded">Pâtisserie Créative</p>
-        </div>
+    <!-- Barra Superior -->
+    <div class="bg-lukato-pink text-white text-xs font-bold text-center py-2 tracking-widest uppercase">
+        Livraison offerte dès 80€ à Paris & Banlieue 🍰
     </div>
 
-    <!-- Main Content -->
-    <main class="flex-1 p-8">
-        <p class="text-lg leading-relaxed mb-8 opacity-90">
-            Creamos postres únicos con ingredientes seleccionados. Haz tu pedido y disfruta de la dulzura.
-        </p>
-
-        <!-- Menu Preview -->
-        <div class="mb-10">
-            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 border-b pb-2 border-current opacity-50">
-                <span class="material-symbols-outlined">restaurant_menu</span> Menú
-            </h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-slate-800 text-amber-500 p-4 rounded-xl text-center transform hover:-translate-y-1 transition shadow-sm">
-                    <span class="material-symbols-outlined text-3xl mb-2">cake</span>
-                    <h3 class="font-bold">Tortas</h3>
+    <!-- Navegación -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Botón Menú Móvil -->
+                <button class="md:hidden p-2" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center justify-center flex-1 md:flex-none md:justify-start">
+                    <a href="#" class="text-3xl font-serif font-bold tracking-tighter text-lukato-pink">
+                        LUKATO<span class="text-lukato-dark text-lg">.</span>
+                    </a>
                 </div>
-                <div class="bg-slate-800 text-amber-500 p-4 rounded-xl text-center transform hover:-translate-y-1 transition shadow-sm">
-                    <span class="material-symbols-outlined text-3xl mb-2">cookie</span>
-                    <h3 class="font-bold">Postres</h3>
+
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#gateaux" class="text-sm font-bold uppercase tracking-wide hover:text-lukato-pink transition">Gâteaux</a>
+                    <a href="#sur-mesure" class="text-sm font-bold uppercase tracking-wide hover:text-lukato-pink transition">Sur-Mesure</a>
+                    <a href="#ateliers" class="text-sm font-bold uppercase tracking-wide hover:text-lukato-pink transition">Ateliers</a>
+                    <a href="#contact" class="text-sm font-bold uppercase tracking-wide hover:text-lukato-pink transition">Contact</a>
+                </div>
+
+                <!-- Iconos -->
+                <div class="flex items-center space-x-4">
+                    <button class="hover:text-lukato-pink transition"><span class="material-symbols-outlined">search</span></button>
+                    <button class="hover:text-lukato-pink transition relative">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="absolute -top-1 -right-1 bg-lukato-dark text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- Action Buttons -->
-        <div class="space-y-4">
-            
-            
-            
+        
+        <!-- Menú Móvil -->
+        <div class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#gateaux" class="block px-3 py-2 text-base font-bold text-gray-700 hover:text-lukato-pink hover:bg-pink-50 rounded-md">NOS GÂTEAUX</a>
+                <a href="#sur-mesure" class="block px-3 py-2 text-base font-bold text-gray-700 hover:text-lukato-pink hover:bg-pink-50 rounded-md">SUR-MESURE</a>
+                <a href="#ateliers" class="block px-3 py-2 text-base font-bold text-gray-700 hover:text-lukato-pink hover:bg-pink-50 rounded-md">ATELIERS</a>
+            </div>
         </div>
-    </main>
+    </nav>
 
-    <footer class="p-6 text-center text-xs opacity-50">
-        &copy; 2024 Lukato
+    <!-- Hero Section -->
+    <div class="relative h-[600px] w-full overflow-hidden hero-zoom cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1562770584-eaf50b5561d0?q=80&w=2070&auto=format&fit=crop" alt="Gâteau Festif" class="absolute inset-0 w-full h-full object-cover hero-img">
+        <div class="absolute inset-0 bg-black/30 flex items-center justify-center text-center">
+            <div class="max-w-3xl px-6">
+                <h2 class="text-white font-serif italic text-2xl md:text-3xl mb-2">La Pâtisserie Festive</h2>
+                <h1 class="text-white font-serif font-bold text-5xl md:text-7xl mb-6 drop-shadow-lg leading-tight">
+                    Dites-le avec<br/>un Gâteau
+                </h1>
+                <a href="#shop" class="inline-block bg-white text-lukato-dark font-bold text-sm uppercase tracking-widest py-4 px-10 rounded-full hover:bg-lukato-pink hover:text-white transition-all transform hover:scale-105 shadow-xl">
+                    Commander maintenant
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intro Text -->
+    <section class="py-16 md:py-24 bg-lukato-light text-center px-4">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-lukato-pink font-bold uppercase tracking-widest text-xs mb-4 block">Notre Philosophie</span>
+            <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6 text-lukato-dark">Le Beau et le Bon. Et vice-versa.</h2>
+            <p class="text-gray-600 text-lg leading-relaxed font-light">
+                Chez <strong>Lukato</strong>, nous ne faisons pas que des gâteaux. Nous créons des souvenirs. 
+                Une pâtisserie créative, impertinente et joyeuse, fabriquée à la main à Paris avec des ingrédients d'exception.
+            </p>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="py-10 px-4 max-w-7xl mx-auto" id="gateaux">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg">
+                <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
+                    <h3 class="text-white font-serif text-2xl font-bold mb-2">Gâteaux à Thème</h3>
+                    <span class="text-white font-bold text-xs uppercase underline underline-offset-4 decoration-lukato-pink">Découvrir</span>
+                </div>
+            </a>
+            <!-- Card 2 (Sur Mesure) -->
+            <a href="#" class="group relative h-96 md:h-auto md:row-span-2 overflow-hidden rounded-xl shadow-lg" id="sur-mesure">
+                <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-8">
+                    <span class="bg-lukato-pink text-white text-[10px] font-bold px-2 py-1 rounded w-fit mb-3">EXCLUSIF</span>
+                    <h3 class="text-white font-serif text-3xl font-bold mb-2">Sur-Mesure</h3>
+                    <p class="text-white/90 text-sm mb-4">Mariages, événements d'entreprise, ou folies douces.</p>
+                    <button class="bg-white text-lukato-dark px-6 py-3 rounded-full font-bold text-sm hover:bg-lukato-pink hover:text-white transition w-fit">Demander un devis</button>
+                </div>
+            </a>
+            <!-- Card 3 -->
+            <a href="#" class="group relative h-96 overflow-hidden rounded-xl shadow-lg" id="ateliers">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
+                    <h3 class="text-white font-serif text-2xl font-bold mb-2">Les Ateliers</h3>
+                    <span class="text-white font-bold text-xs uppercase underline underline-offset-4 decoration-lukato-pink">Réserver</span>
+                </div>
+            </a>
+            <!-- Card 4 -->
+            <a href="#" class="group relative h-64 md:col-span-2 lg:col-span-1 overflow-hidden rounded-xl shadow-lg">
+                <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 hover:bg-black/50 transition flex items-center justify-center">
+                    <div class="text-center">
+                        <h3 class="text-white font-serif text-2xl font-bold">Biscuits & Cadeaux</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white pt-16 pb-8 border-t border-gray-100" id="contact">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div>
+                <a href="#" class="text-2xl font-serif font-bold text-lukato-pink block mb-6">LUKATO.</a>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">Pâtisserie créative & festive.<br/>Fabriqué avec amour à Paris.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 mb-6 uppercase text-xs tracking-widest">Nous trouver</h4>
+                <p class="text-sm text-gray-600 mb-4">5 Rue de la Créativité<br/>75004 Paris</p>
+                <a href="tel:+33123456789" class="text-lukato-pink font-bold text-sm">01 23 45 67 89</a>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-900 mb-6 uppercase text-xs tracking-widest">Suivez-nous</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-lukato-pink hover:text-white transition">IG</a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-lukato-pink hover:text-white transition">FB</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-100 pt-8 text-center">
+            <p class="text-xs text-gray-400">© 2024 Lukato Paris.</p>
+        </div>
     </footer>
-
 </body>
 </html>
